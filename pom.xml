@@ -54,6 +54,10 @@
 	</developers>
 	<contributors>
 	</contributors>
+	<organization>
+		<name>Ushus Technologies</name>
+		<url>http://www.ushustech.com</url>
+	</organization>
 
 	<build>
 		<!--
