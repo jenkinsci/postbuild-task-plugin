@@ -1,0 +1,23 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  
+    <f:entry title="${%Tasks}">
+      <f:repeatable var="t" items="${instance.tasks}" noAddButton="true" minimum="1">
+        <table width="100%">
+          <f:entry title="${%Log text}" help="/plugin/postbuild-task/help/help-logText.html">
+            <f:textbox name="postbuild-task.logText" value="${t.logText}" />
+          </f:entry>
+          <f:entry title="${%Script}" help="/plugin/postbuild-task/help/help-script.html">
+            <textarea class="setting-input" name="postbuild-task.script"
+              rows="5" style="width:100%">${t.script}</textarea>
+          </f:entry>
+          <f:entry>
+            <div align="right">
+              <input type="button" value="${%Add another task...}" class="repeatable-add show-if-last" />
+              <input type="button" value="${%Delete}" class="repeatable-delete show-if-not-only" style="margin-left: 1em;" />
+            </div>
+          </f:entry>
+        </table>
+      </f:repeatable>
+    </f:entry>
+  
+</j:jelly>
