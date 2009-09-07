@@ -3,10 +3,10 @@
     <f:entry title="${%Tasks}">
       <f:repeatable var="t" items="${instance.tasks}" noAddButton="true" minimum="1">
         <table width="100%">
-          <f:entry title="${%Log text}" help="/plugin/postbuild-task/help-logText.html">
+          <f:entry title="${%Log text}" help="/plugin/postbuild-task/help/help-logText.html">
             <f:textbox name="postbuild-task.logText" value="${t.logText}" />
           </f:entry>
-          <f:entry title="${%Script}" help="/plugin/postbuild-task/help-script.html">
+          <f:entry title="${%Script}" help="/plugin/postbuild-task/help/help-script.html">
             <textarea class="setting-input" name="postbuild-task.script"
               rows="5" style="width:100%">${t.script}</textarea>
           </f:entry>

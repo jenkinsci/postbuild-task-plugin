@@ -51,6 +51,11 @@
 				<role>Software Engineer</role>
 			</roles>
 		</developer>
+                <developer>
+                        <id>castorpilot</id>
+                        <name>Fred</name>
+                        <email>castorpilot@gmail.com</email>
+                </developer>
 	</developers>
 	<contributors>
 	</contributors>
