@@ -50,7 +50,7 @@ public class PostbuildTask extends Publisher {
 
 	/**
 	 * This method will return the taskProperties foe the specified logText
-	 * @param logText
+	 * 
 	 * @return TaskProperties[]
 	 */
 	// TODO need to finish later
