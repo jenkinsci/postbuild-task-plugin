@@ -50,9 +50,8 @@ public class PostbuildTask extends Publisher {
 
 	/**
 	 * This method will return the taskProperties foe the specified logText
-	 * 
 	 * @param logText
-	 * @return
+	 * @return TaskProperties[]
 	 */
 	// TODO need to finish later
 	public TaskProperties[] getAllTasks() {
@@ -62,7 +61,7 @@ public class PostbuildTask extends Publisher {
 	/**
 	 * This method will return all the tasks
 	 * 
-	 * @return
+	 * @return List<TaskProperties>
 	 */
 	public List<TaskProperties> getTasks() {
 		if (tasks == null)
@@ -179,10 +178,10 @@ public class PostbuildTask extends Publisher {
 		boolean match = matcher.find();
 		if (match) {
 			listener.getLogger().println(
-					"Match found for " + logText + " : True");
+					"Match found for :" + logText + " : True");
 		} else {
 			listener.getLogger().println(
-					"Could not match " + logText + "  : False");
+					"Could not match :" + logText + "  : False");
 		}
 		return match;
 	}

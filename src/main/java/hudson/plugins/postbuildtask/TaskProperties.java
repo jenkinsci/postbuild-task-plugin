@@ -17,10 +17,18 @@ public final class TaskProperties {
 	 * The text string which shoud be searched in the build log.
 	 */
 	public LogProperties[] logTexts;
+	
+	public String logText;
 	/**
 	 * Shell script to be executed.
 	 */
 	public String script;
+	
+	{
+		if(script != null && !script.trim().equals(""))
+			addLogTextToArray();
+		
+	}
 
 	@DataBoundConstructor
 	public TaskProperties(String script) {
@@ -37,6 +45,10 @@ public final class TaskProperties {
 
 	public String getScript() {
 		return script;
+	}
+	
+	private void addLogTextToArray() {
+		logTexts = new LogProperties[] {new LogProperties(logText,"AND")};
 	}
 
 	/*
