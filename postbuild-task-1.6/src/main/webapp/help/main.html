@@ -1,0 +1,6 @@
+<div>
+<p> This feature allows you to associate shell or a batch scripts that perform some tasks on Hudson depending on the build log output.If the log text matches some where in the build log file, the script will execute.
+ex: if "IOException" if specified in the log text, and if the build log file contains the string "IOException", the script will execute.  
+</p>
+<p> Java Regex are allowed, and groups can be used as script parameters. If the text is "Last Build : #(\d+)" and the script is "script.sh", then if the log contains a line "Last Build : #4", the script "script.sh" will be called.
+</div>
