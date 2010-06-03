@@ -11,7 +11,7 @@
 	<artifactId>postbuild-task</artifactId>
 	<packaging>hpi</packaging>
 	<name>Hudson Post build task</name>
-	<version>1.7-SNAPSHOT</version>
+	<version>1.7</version>
 
 	<description>This plugin allows the user to execute a shell/batch task depending on the build log output.Java regular expression are allowed. If the string matches anywhere in the build log output, the script will execute.</description>
 	<url>http://wiki.hudson-ci.org/display/HUDSON/Post+build+task</url>
@@ -38,4 +38,10 @@
 		<name>Ushus Technologies</name>
 		<url>http://www.ushustech.com</url>
 	</organization>
+
+  <scm>
+    <connection>scm:svn:https://guest@svn.dev.java.net/svn/hudson/tags/postbuild-task-1.7</connection>
+    <developerConnection>scm:svn:https://svn.dev.java.net/svn/hudson/tags/postbuild-task-1.7</developerConnection>
+    <url>https://hudson.dev.java.net/source/browse/hudson/tags/postbuild-task-1.7</url>
+  </scm>
 </project>
