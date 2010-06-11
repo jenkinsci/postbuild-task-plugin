@@ -98,6 +98,9 @@ public class PostbuildTask extends Publisher {
 			BuildListener listener) throws InterruptedException, IOException {
 		String buildLog = build.getLog();
 		listener.getLogger().println("Performing Post build task...");
+
+     	Result pr = build.getResult();
+
 		try {
 			for (int i = 0; i < tasks.length; i++) {
 				TaskProperties taskProperties = tasks[i];
@@ -108,6 +111,12 @@ public class PostbuildTask extends Publisher {
 							"Logical operation result is TRUE");
 					/*script = getGroupedScript(taskProperties
 							.getLogProperties(), taskProperties.script, buildLog);*/
+
+					if (taskProperties.getRunIfJobSuccessful() && pr!=null && pr.isWorseThan(Result.UNSTABLE)) {
+						listener.getLogger().println("Skipping post build task "+i+" - job status is worse than unstable : "+build.getResult());
+						continue;
+					}
+
 					listener.getLogger().println("Running script  : " + script);
 					CommandInterpreter runner = getCommandInterpreter(launcher,
 							script);
@@ -117,6 +126,11 @@ public class PostbuildTask extends Publisher {
 							"POST BUILD TASK : " + result.toString());
 					listener.getLogger().println(
 							"END OF POST BUILD TASK : " + i);
+
+					if((result == Result.FAILURE) && (taskProperties.getEscalateStatus())){
+							listener.getLogger().println("ESCALATE FAILED POST BUILD TASK TO JOB STATUS");
+							build.setResult(Result.FAILURE);
+					}
 				} else {
 					listener.getLogger().println(
 							"Logical operation result is FALSE");

@@ -40,7 +40,8 @@ public final class TaskProperties {
 	 * The text string which shoud be searched in the build log.
 	 */
 	public LogProperties[] logTexts;
-	
+	public Boolean EscalateStatus;
+	public Boolean RunIfJobSuccessful;
 	public String logText;
 	/**
 	 * Shell script to be executed.
@@ -50,16 +51,24 @@ public final class TaskProperties {
 	{
 		if(script != null && !script.trim().equals(""))
 			addLogTextToArray();
-		
 	}
 
 	@DataBoundConstructor
-	public TaskProperties(String script) {
+	public TaskProperties(String script, Boolean EscalateStatus, Boolean RunIfJobSuccessful) {
 		this.script = script;
+		this.EscalateStatus = EscalateStatus;
+		this.RunIfJobSuccessful = RunIfJobSuccessful;
 	}
 
 	public void setLogTexts(LogProperties[] logTexts) {
 		this.logTexts = logTexts;
+	}
+
+	public Boolean getEscalateStatus(){
+		return this.EscalateStatus;
+	}
+	public Boolean getRunIfJobSuccessful(){
+		return this.RunIfJobSuccessful;
 	}
 
 	public LogProperties[] getLogProperties() {
