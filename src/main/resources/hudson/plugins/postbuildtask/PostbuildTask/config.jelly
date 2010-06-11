@@ -38,12 +38,11 @@
                    	<div width="100%">
                    		<f:entry title="${%Operation}" >
                    			<select name="postbuild-task.logProperties.operator" align="right" >
-                   				<f:option value="AND" selected="${lp.operator=='AND'}"> -- AND --</f:option>
+                   				<f:option value="AND" selected="${lp.operator=='AND'}">-- AND --</f:option>
                    				<f:option value="OR" selected="${lp.operator=='OR'}">-- OR --</f:option>
-        					</select>
+        			      		</select>
                         	<f:repeatableDeleteButton value="Delete Log Text"/>
-        				</f:entry>
-            		   
+        	      			</f:entry>
           			</div>
                  </table>
                  
@@ -53,7 +52,7 @@
 		<f:block>
               <input name="postbuild-task.logProperties.logText" type="hidden" value="@$#endofblock" />
               <input name="postbuild-task.logProperties.operator" type="hidden" value="@$#endofblock" />
-        </f:block>
+      </f:block>
           <f:entry title="${%Script}" help="/plugin/postbuild-task/help/help-script.html">
             <textarea class="setting-input" name="postbuild-task.taskpropertes.script"
               rows="5" style="width:100%">${t.script}</textarea>
