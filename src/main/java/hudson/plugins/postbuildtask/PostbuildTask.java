@@ -1,7 +1,7 @@
 /*
  * The MIT License
  * 
- * Copyright (c) 2009, Ushus Technologies LTD.,Shinod K Mohandas
+ * Copyright (c) 2009-2011, Ushus Technologies LTD., Shinod K Mohandas
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,21 @@
  */
 package hudson.plugins.postbuildtask;
 
+import hudson.Extension;
 import hudson.Launcher;
 import hudson.model.AbstractProject;
 import hudson.model.AbstractBuild;
-import hudson.model.Action;
 import hudson.model.BuildListener;
-import hudson.model.Descriptor;
-import hudson.model.Job;
-import hudson.model.JobProperty;
-import hudson.model.JobPropertyDescriptor;
 import hudson.model.Result;
-import hudson.util.EditDistance;
-import org.kohsuke.stapler.StaplerRequest;
 import hudson.tasks.BatchFile;
+import hudson.tasks.BuildStepDescriptor;
+import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.CommandInterpreter;
+import hudson.tasks.Publisher;
+import hudson.tasks.Recorder;
 import hudson.tasks.Shell;
+import net.sf.json.JSONObject;
+import org.kohsuke.stapler.StaplerRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,21 +45,17 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-import hudson.tasks.Publisher;
 
 /**
- * Post build tasks added as {@link Publisher}.
- * 
+ * Post build tasks added as {@link Recorder}.
  * 
  * @author Shinod Mohandas
  */
-public class PostbuildTask extends Publisher {
+public class PostbuildTask extends Recorder {
 
 	private volatile TaskProperties[] tasks;
 
@@ -91,6 +87,10 @@ public class PostbuildTask extends Publisher {
 			return new ArrayList<TaskProperties>();
 		else
 			return Collections.unmodifiableList(Arrays.asList(tasks));
+	}
+
+	public BuildStepMonitor getRequiredMonitorService() {
+		return BuildStepMonitor.NONE;
 	}
 
 	@Override
@@ -159,7 +159,6 @@ public class PostbuildTask extends Publisher {
 			for (int k = 0; k < matcher.groupCount(); k++) {
 				script = script.replace("%" + k, matcher.group(k));
 			}
-			
 		}
 		
 		return script;
@@ -194,7 +193,6 @@ public class PostbuildTask extends Publisher {
 			} else {
 				logmatch = match1;
 			}
-
 		}
 
 		return logmatch;
@@ -238,25 +236,15 @@ public class PostbuildTask extends Publisher {
 			return new BatchFile(script);
 	}
 
-	/**
-	 * This method will return the descriptorobject.
-	 * 
-	 * @return DESCRIPTOR
-	 */
-	public DescriptorImpl getDescriptor() {
-		return DESCRIPTOR;
-	}
-
-	public static final DescriptorImpl DESCRIPTOR = new DescriptorImpl();
-
-	public static final class DescriptorImpl extends Descriptor<Publisher> {
+	@Extension
+	public static final class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 		public DescriptorImpl() {
 			super(PostbuildTask.class);
 			load();
 		}
 
-		public boolean isApplicable(Class<? extends Job> jobType) {
-			return AbstractProject.class.isAssignableFrom(jobType);
+		public boolean isApplicable(Class<? extends AbstractProject> jobType) {
+			return true;
 		}
 
 		@Override
@@ -269,7 +257,8 @@ public class PostbuildTask extends Publisher {
 			return "/plugin/postbuild-task/help/main.html";
 		}
 
-		public PostbuildTask newInstance(StaplerRequest req)
+		@Override
+		public PostbuildTask newInstance(StaplerRequest req, JSONObject formData)
 				throws FormException {
 			// if(req.getParameter("postbuild-task.")!=null)
 			List<LogProperties> logprops = req.bindParametersToList(

@@ -23,12 +23,7 @@
  */
 package hudson.plugins.postbuildtask;
 
-import java.util.Collection;
-
-import hudson.util.Iterators;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
 
 /**
  * A task properties.
@@ -37,7 +32,7 @@ import org.kohsuke.stapler.StaplerResponse;
  */
 public final class TaskProperties {
 	/**
-	 * The text string which shoud be searched in the build log.
+	 * The text string which should be searched in the build log.
 	 */
 	public LogProperties[] logTexts;
 	public Boolean EscalateStatus;
