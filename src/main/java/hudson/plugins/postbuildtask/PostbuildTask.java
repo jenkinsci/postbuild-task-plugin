@@ -109,8 +109,8 @@ public class PostbuildTask extends Recorder {
 						buildLog, listener)) {
 					listener.getLogger().println(
 							"Logical operation result is TRUE");
-					/*script = getGroupedScript(taskProperties
-							.getLogProperties(), taskProperties.script, buildLog);*/
+					script = getGroupedScript(taskProperties
+							.getLogProperties(), taskProperties.script, buildLog);
 
 					if (taskProperties.getRunIfJobSuccessful() && pr!=null && pr.isWorseThan(Result.UNSTABLE)) {
 						listener.getLogger().println("Skipping post build task "+i+" - job status is worse than unstable : "+build.getResult());
@@ -151,14 +151,20 @@ public class PostbuildTask extends Recorder {
 
 	private String getGroupedScript(LogProperties[] logTexts, String script,
 			String buildLog) {
-		StringBuilder appendedLogs = new StringBuilder();
+		List<String> matches = new ArrayList<String>();
 		for (int i = 0; i < logTexts.length; i++) {
 			LogProperties logInfo = logTexts[i];
 			Pattern pattern = Pattern.compile(logInfo.getLogText());
 			Matcher matcher = pattern.matcher(buildLog);
-			for (int k = 0; k < matcher.groupCount(); k++) {
-				script = script.replace("%" + k, matcher.group(k));
+			if(matcher.find()) {
+				for (int k = 0; k <= matcher.groupCount(); k++) {
+					matches.add(matcher.group(k));
+				}
 			}
+		}
+    
+    for(int index = 0; index < matches.size(); index++) {
+			script = script	.replace("%" + index, matches.get(index));
 		}
 		
 		return script;
