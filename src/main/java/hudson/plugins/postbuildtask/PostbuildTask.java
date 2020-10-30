@@ -80,7 +80,7 @@ public class PostbuildTask extends Recorder {
 	/**
 	 * This method will return all the tasks
 	 * 
-	 * @return List<TaskProperties>
+	 * @return List&lt;TaskProperties&gt;
 	 */
 	public List<TaskProperties> getTasks() {
 		if (tasks == null)
