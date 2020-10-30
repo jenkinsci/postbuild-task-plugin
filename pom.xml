@@ -1,20 +1,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<groupId>org.jvnet.hudson.plugins</groupId>
-		<version>1.357</version>
-		<relativePath>../pom.xml</relativePath>
+		<version>4.12</version>
+		<relativePath/>
 	</parent>
 
 	<groupId>org.jvnet.hudson.plugins</groupId>
 	<artifactId>postbuild-task</artifactId>
 	<packaging>hpi</packaging>
 	<name>Hudson Post build task</name>
-	<version>1.9-SNAPSHOT</version>
+	<version>${revision}${changelist}</version>
 
 	<description>This plugin allows the user to execute a shell/batch task depending on the build log output.Java regular expression are allowed. If the string matches anywhere in the build log output, the script will execute.</description>
 	<url>http://wiki.hudson-ci.org/display/HUDSON/Post+build+task</url>
+
+	<scm>
+		<connection>scm:git:git@github.com:${gitHubRepo}.git</connection>
+		<developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
+		<url>https://github.com/${gitHubRepo}</url>
+		<tag>${scmTag}</tag>
+	</scm>
+
+	<properties>
+		<!-- incrementals-tools -->
+		<revision>1.9</revision>
+		<changelist>-SNAPSHOT</changelist>
+		<gitHubRepo>jenkinsci/postbuild-task-plugin</gitHubRepo>
+
+		<java.level>8</java.level>
+		<spotbugs.failOnError>false</spotbugs.failOnError>
+	</properties>
 
 	<developers>
 		<developer>
@@ -28,30 +45,30 @@
 				<role>Software Engineer</role>
 			</roles>
 		</developer>
-                <developer>
-                        <id>castorpilot</id>
-                        <name>Fred</name>
-                        <email>castorpilot@gmail.com</email>
-                </developer>
+		<developer>
+			<id>castorpilot</id>
+			<name>Fred</name>
+			<email>castorpilot@gmail.com</email>
+		</developer>
 	</developers>
 	<organization>
 		<name>Ushus Technologies</name>
 		<url>http://www.ushustech.com</url>
 	</organization>
 
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</repository>
+	</repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>  
   
 

@@ -21,57 +21,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
 -->
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-  <f:block>
-  <d:taglib uri="local">
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form" xmlns:p="/lib/postbuildtask">
     <f:entry title="${%Tasks}">
-      <f:repeatable var="t" items="${instance.tasks}" add="Add another task" minimum="1">
-        <table width="100%" >
-        <f:nested>
-          <f:entry title="" help="/plugin/postbuild-task/help/help-logText.html">
-               <f:repeatable var="lp" items="${t.logTexts}" minimum="1">
-                 <table width="100%" bgcolor="#EEEEEE">
-                   	
-                   		<f:entry title="${%Log text}">
-                   			<f:textbox name="postbuild-task.logProperties.logText" value="${lp.logText}" />
-                   		</f:entry>
-                   	<div width="100%">
-                   		<f:entry title="${%Operation}" >
-                   			<select name="postbuild-task.logProperties.operator" align="right" >
-                   				<f:option value="AND" selected="${lp.operator=='AND'}">-- AND --</f:option>
-                   				<f:option value="OR" selected="${lp.operator=='OR'}">-- OR --</f:option>
-        			      		</select>
-                        	<f:repeatableDeleteButton value="Delete Log Text"/>
-        	      			</f:entry>
-          			</div>
-                 </table>
-               </f:repeatable>
-           </f:entry>
-		</f:nested>
-		<f:block>
-              <input name="postbuild-task.logProperties.logText" type="hidden" value="@$#endofblock" />
-              <input name="postbuild-task.logProperties.operator" type="hidden" value="@$#endofblock" />
-      </f:block>
-          <f:entry title="${%Script}" help="/plugin/postbuild-task/help/help-script.html">
-            <textarea class="setting-input" name="postbuild-task.taskpropertes.script"
-              rows="5" style="width:100%">${t.script}</textarea>
-          </f:entry>
-         <f:entry title="${%Run script only if all previous steps were successful}" help="/plugin/postbuild-task/help/help-runifjobsuccessful.html">
-               <f:checkbox name="postbuild-task.taskpropertes.RunIfJobSuccessful" value="true" checked="${t.getRunIfJobSuccessful()}" /> 
-         </f:entry>
+        <f:repeatable var="t" items="${instance.tasks}" add="Add another task" minimum="1">
+            <p:blockWrapper>
+                <f:nested>
+                    <f:entry title="" help="/plugin/postbuild-task/help/help-logText.html">
+                        <f:repeatable var="lp" items="${t.logTexts}" minimum="1">
+                            <p:blockWrapper>
+                                <f:entry title="${%Log text}">
+                                    <f:textbox name="postbuild-task.logProperties.logText" value="${lp.logText}"/>
+                                </f:entry>
+                                <f:entry title="${%Operation}">
+                                    <select name="postbuild-task.logProperties.operator" align="right">
+                                        <f:option value="AND" selected="${lp.operator=='AND'}">-- AND --</f:option>
+                                        <f:option value="OR" selected="${lp.operator=='OR'}">-- OR --</f:option>
+                                    </select>
+                                    <f:repeatableDeleteButton value="Delete Log Text"/>
+                                </f:entry>
+                            </p:blockWrapper>
+                        </f:repeatable>
+                    </f:entry>
+                </f:nested>
+                <f:block>
+                    <input name="postbuild-task.logProperties.logText" type="hidden" value="@$#endofblock"/>
+                    <input name="postbuild-task.logProperties.operator" type="hidden" value="@$#endofblock"/>
+                </f:block>
+                <f:entry title="${%Script}" help="/plugin/postbuild-task/help/help-script.html">
+                    <textarea class="setting-input" name="postbuild-task.taskpropertes.script"
+                              rows="5" style="width:100%">${t.script}</textarea>
+                </f:entry>
+                <f:entry title="${%Run script only if all previous steps were successful}"
+                         help="/plugin/postbuild-task/help/help-runifjobsuccessful.html">
+                    <f:checkbox name="postbuild-task.taskpropertes.RunIfJobSuccessful" value="true"
+                                checked="${t.getRunIfJobSuccessful()}"/>
+                </f:entry>
 
-         <f:entry title="${%Escalate script execution status to job status}" help="/plugin/postbuild-task/help/help-escalatestatus.html">
-               <f:checkbox name="postbuild-task.taskpropertes.EscalateStatus" value="true" checked="${t.getEscalateStatus()}" /> 
-         </f:entry>
-          <f:entry>
-            <div align="right">
-              <input type="button" value="${%Delete task}" class="repeatable-delete show-if-not-only" style="margin-left: 1em;" />
-            </div>
-          </f:entry>
-        </table>
-        <table width="100%" bgcolor="#660033"><tr><td></td></tr></table>
-      </f:repeatable>
+                <f:entry title="${%Escalate script execution status to job status}"
+                         help="/plugin/postbuild-task/help/help-escalatestatus.html">
+                    <f:checkbox name="postbuild-task.taskpropertes.EscalateStatus" value="true"
+                                checked="${t.getEscalateStatus()}"/>
+                </f:entry>
+                <f:entry>
+                    <div align="right">
+                        <f:repeatableDeleteButton value="${%Delete task}"/>
+                    </div>
+                </f:entry>
+            </p:blockWrapper>
+        </f:repeatable>
     </f:entry>
-  </d:taglib>  
-  </f:block>
 </j:jelly>
