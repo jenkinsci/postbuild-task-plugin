@@ -57,14 +57,14 @@ import java.util.regex.Matcher;
  */
 public class PostbuildTask extends Recorder {
 
-	private volatile TaskProperties[] tasks;
+	private final TaskProperties[] tasks;
 
 	public PostbuildTask(TaskProperties... tasks) {
 		this.tasks = tasks;
 	}
 
 	public PostbuildTask(Collection<TaskProperties> tasks) {
-		this((TaskProperties[]) tasks.toArray(new TaskProperties[tasks.size()]));
+		this(tasks.toArray(new TaskProperties[0]));
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class PostbuildTask extends Recorder {
 	 */
 	// TODO need to finish later
 	public TaskProperties[] getAllTasks() {
-		return tasks;
+		return Arrays.copyOf(tasks, tasks.length);
 	}
 
 	/**
@@ -266,6 +266,11 @@ public class PostbuildTask extends Recorder {
 		@Override
 		public PostbuildTask newInstance(StaplerRequest req, JSONObject formData)
 				throws FormException {
+			
+			if (req == null) {
+				throw new IllegalStateException("req is always non null");
+			}
+			
 			// if(req.getParameter("postbuild-task.")!=null)
 			List<LogProperties> logprops = req.bindParametersToList(
 					LogProperties.class, "postbuild-task.logProperties.");

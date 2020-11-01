@@ -1,20 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<groupId>org.jvnet.hudson.plugins</groupId>
-		<version>1.357</version>
-		<relativePath>../pom.xml</relativePath>
+		<version>4.12</version>
 	</parent>
 
 	<groupId>org.jvnet.hudson.plugins</groupId>
 	<artifactId>postbuild-task</artifactId>
 	<packaging>hpi</packaging>
-	<name>Hudson Post build task</name>
-	<version>1.9-SNAPSHOT</version>
+	<name>Post build task</name>
+	<version>${revision}${changelist}</version>
 
-	<description>This plugin allows the user to execute a shell/batch task depending on the build log output.Java regular expression are allowed. If the string matches anywhere in the build log output, the script will execute.</description>
-	<url>http://wiki.hudson-ci.org/display/HUDSON/Post+build+task</url>
+	<properties>
+		<revision>1.9</revision>
+		<changelist>-SNAPSHOT</changelist>
+		<gitHubRepo>jenkinsci/postbuild-task-plugin</gitHubRepo>
+		<jenkins.version>2.204.6</jenkins.version>
+		<java.level>8</java.level>
+	</properties>
+	
+	<description>Allows the user to execute a shell/batch task depending on the build log output. Java regular expression are allowed. If the string matches anywhere in the build log output, the script will execute.</description>
+	<url>https://github.com/jenkinsci/postbuild-task-plugin</url>
 
 	<developers>
 		<developer>
@@ -39,17 +46,24 @@
 		<url>http://www.ushustech.com</url>
 	</organization>
 
+	<scm>
+		<connection>scm:git:ssh://git@github.com/${gitHubRepo}.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/${gitHubRepo}.git</developerConnection>
+		<url>https://github.com/${gitHubRepo}</url>
+		<tag>${scmTag}</tag>
+	</scm>
+	
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
 </project>  
