@@ -70,7 +70,7 @@ public class PostbuildTask extends Recorder {
 	/**
 	 * This method will return the taskProperties foe the specified logText
 	 * 
-	 * @return TaskProperties[]
+	 * @return all the tasks.
 	 */
 	// TODO need to finish later
 	public TaskProperties[] getAllTasks() {
@@ -80,7 +80,7 @@ public class PostbuildTask extends Recorder {
 	/**
 	 * This method will return all the tasks
 	 * 
-	 * @return List<TaskProperties>
+	 * @return all the tasks.
 	 */
 	public List<TaskProperties> getTasks() {
 		if (tasks == null)
