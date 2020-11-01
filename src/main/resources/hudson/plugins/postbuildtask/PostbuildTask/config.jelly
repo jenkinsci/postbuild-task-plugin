@@ -22,16 +22,16 @@
  * THE SOFTWARE.
 -->
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:p="/lib/postbuild">
   <f:block>
   <d:taglib uri="local">
     <f:entry title="${%Tasks}">
       <f:repeatable var="t" items="${instance.tasks}" add="Add another task" minimum="1">
-        <table width="100%" >
+        <p:blockWrapper>
         <f:nested>
           <f:entry title="" help="/plugin/postbuild-task/help/help-logText.html">
                <f:repeatable var="lp" items="${t.logTexts}" minimum="1">
-                 <table width="100%" bgcolor="#EEEEEE">
+                 <p:blockWrapper>
                    	
                    		<f:entry title="${%Log text}">
                    			<f:textbox name="postbuild-task.logProperties.logText" value="${lp.logText}" />
@@ -45,7 +45,7 @@
                         	<f:repeatableDeleteButton value="Delete Log Text"/>
         	      			</f:entry>
           			</div>
-                 </table>
+                 </p:blockWrapper>
                </f:repeatable>
            </f:entry>
 		</f:nested>
@@ -69,8 +69,8 @@
               <input type="button" value="${%Delete task}" class="repeatable-delete show-if-not-only" style="margin-left: 1em;" />
             </div>
           </f:entry>
-        </table>
-        <table width="100%" bgcolor="#660033"><tr><td></td></tr></table>
+        </p:blockWrapper>
+        <p:blockWrapper><p:rowWrapper><p:cellWrapper/></p:rowWrapper></p:blockWrapper>
       </f:repeatable>
     </f:entry>
   </d:taglib>  
