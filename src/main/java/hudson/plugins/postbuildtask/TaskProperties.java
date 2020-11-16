@@ -42,11 +42,6 @@ public final class TaskProperties {
 	 * Shell script to be executed.
 	 */
 	public String script;
-	
-	{
-		if(script != null && !script.trim().equals(""))
-			addLogTextToArray();
-	}
 
 	@DataBoundConstructor
 	public TaskProperties(String script, Boolean EscalateStatus, Boolean RunIfJobSuccessful) {
