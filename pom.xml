@@ -10,10 +10,10 @@
   <artifactId>postbuild-task</artifactId>
   <packaging>hpi</packaging>
   <name>Post build task</name>
-  <version>1.9</version>
+  <version>${revision}${changelist}</version>
 
   <properties>
-    <revision>1.9</revision>
+    <revision>1.10</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/postbuild-task-plugin</gitHubRepo>
     <jenkins.version>2.204.6</jenkins.version>
@@ -58,7 +58,7 @@
     <connection>scm:git:ssh://git@github.com/${gitHubRepo}.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/${gitHubRepo}.git</developerConnection>
     <url>https://github.com/${gitHubRepo}</url>
-    <tag>postbuild-task-1.9</tag>
+    <tag>${scmTag}</tag>
   </scm>
 
   <repositories>
