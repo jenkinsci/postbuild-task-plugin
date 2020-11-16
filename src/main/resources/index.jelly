@@ -26,5 +26,5 @@
 -->
 <?jelly escape-by-default='true'?>
 <div>
-  This plugin allows to execute a batch/shell task depending on the build log output.  
+  Allows to execute a batch/shell task depending on the build log output.  
 </div>
