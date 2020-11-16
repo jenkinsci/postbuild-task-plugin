@@ -1,63 +1,78 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>plugin</artifactId>
-		<groupId>org.jvnet.hudson.plugins</groupId>
-		<version>1.357</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>4.12</version>
+  </parent>
 
-	<groupId>org.jvnet.hudson.plugins</groupId>
-	<artifactId>postbuild-task</artifactId>
-	<packaging>hpi</packaging>
-	<name>Hudson Post build task</name>
-	<version>1.9-SNAPSHOT</version>
-	<licenses>
-    		<license>
-      			<name>The MIT license</name>
-      			<url>https://opensource.org/licenses/MIT</url>
-     			<distribution>repo</distribution>
-    		</license>
-  	</licenses>
+  <groupId>org.jvnet.hudson.plugins</groupId>
+  <artifactId>postbuild-task</artifactId>
+  <packaging>hpi</packaging>
+  <name>Post build task</name>
+  <version>${revision}${changelist}</version>
 
-	<description>This plugin allows the user to execute a shell/batch task depending on the build log output.Java regular expression are allowed. If the string matches anywhere in the build log output, the script will execute.</description>
-	<url>http://wiki.hudson-ci.org/display/HUDSON/Post+build+task</url>
+  <properties>
+    <revision>1.9</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <gitHubRepo>jenkinsci/postbuild-task-plugin</gitHubRepo>
+    <jenkins.version>2.204.6</jenkins.version>
+    <java.level>8</java.level>
+  </properties>
 
-	<developers>
-		<developer>
-			<id>shinodkm</id>
-			<name>Shinod Mohandas</name>
-			<email>shinodkm@gmail.com</email>
-			<organization>Ushus Technologies</organization>
-			<organizationUrl>http://www.ushustech.com/</organizationUrl>
-			<timezone>+5.30</timezone>
-			<roles>
-				<role>Software Engineer</role>
-			</roles>
-		</developer>
-                <developer>
-                        <id>castorpilot</id>
-                        <name>Fred</name>
-                        <email>castorpilot@gmail.com</email>
-                </developer>
-	</developers>
-	<organization>
-		<name>Ushus Technologies</name>
-		<url>http://www.ushustech.com</url>
-	</organization>
+  <description>Allows to execute a batch/shell task depending on the build log output.</description>
+  <url>https://github.com/jenkinsci/postbuild-task-plugin</url>
 
-    <repositories>
-        <repository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </repository>
-    </repositories>
+  <licenses>
+    <license>
+      <name>The MIT license</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <developers>
+    <developer>
+      <id>shinodkm</id>
+      <name>Shinod Mohandas</name>
+      <email>shinodkm@gmail.com</email>
+      <organization>Ushus Technologies</organization>
+      <organizationUrl>http://www.ushustech.com/</organizationUrl>
+      <timezone>+5.30</timezone>
+      <roles>
+        <role>Software Engineer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>castorpilot</id>
+      <name>Fred</name>
+      <email>castorpilot@gmail.com</email>
+    </developer>
+  </developers>
+  <organization>
+    <name>Ushus Technologies</name>
+    <url>http://www.ushustech.com</url>
+  </organization>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com/${gitHubRepo}.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/${gitHubRepo}.git</developerConnection>
+    <url>https://github.com/${gitHubRepo}</url>
+    <tag>${scmTag}</tag>
+  </scm>
+
+  <repositories>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>  
-  
