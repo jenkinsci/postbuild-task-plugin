@@ -52,3 +52,7 @@ executes, the current directory will be the workspace directory, just
 like the shell script builder. So depending on your SCM, you might have
 to cd into a directory. Try "pwd" and "ls" to find out whether you need
 that or not.
+
+## LICENSE
+
+Licensed under MIT, see [LICENSE](LICENSE.md)
