@@ -4,7 +4,7 @@ This plugin allows the user to execute a shell/batch task depending on
 the build log output. Java regular expression are allowed.
 
 This feature allows user to associate shell or a batch scripts that
-perform some tasks on Hudson depending on the build log output. If the
+perform some tasks on Jenkins depending on the build log output. If the
 log text has a match some where in the build log file, the script will
 execute and the post build log will append to the project build log.
 Java regular expression are allowed.
