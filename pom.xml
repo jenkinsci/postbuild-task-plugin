@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.12</version>
+    <version>4.74</version>
   </parent>
 
   <groupId>org.jvnet.hudson.plugins</groupId>
@@ -16,8 +16,7 @@
     <revision>1.10</revision>
     <changelist>-SNAPSHOT</changelist>
     <gitHubRepo>jenkinsci/postbuild-task-plugin</gitHubRepo>
-    <jenkins.version>2.204.6</jenkins.version>
-    <java.level>8</java.level>
+    <jenkins.version>2.361.4</jenkins.version>
   </properties>
 
   <description>Allows to execute a batch/shell task depending on the build log output.</description>
