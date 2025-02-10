@@ -37,7 +37,7 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import hudson.tasks.Shell;
 import net.sf.json.JSONObject;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -264,7 +264,7 @@ public class PostbuildTask extends Recorder {
 		}
 
 		@Override
-		public PostbuildTask newInstance(StaplerRequest req, JSONObject formData)
+		public PostbuildTask newInstance(StaplerRequest2 req, JSONObject formData)
 				throws FormException {
 			
 			if (req == null) {

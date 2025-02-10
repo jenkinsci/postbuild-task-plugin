@@ -23,6 +23,7 @@
  */
 package hudson.plugins.postbuildtask;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
@@ -36,6 +37,7 @@ public final class LogProperties {
 	public String operator;
 
 	@DataBoundConstructor
+	@SuppressFBWarnings(value = "PA_PUBLIC_PRIMITIVE_ATTRIBUTE", justification = "Backwards compatibility")
 	public LogProperties(String logText, String operator) {
 		this.logText = logText;
 		this.operator = operator;
