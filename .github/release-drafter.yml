@@ -1,3 +1,0 @@
-_extends: .github
-tag-template: postbuild-task-$NEXT_MINOR_VERSION
-

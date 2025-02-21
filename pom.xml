@@ -11,11 +11,10 @@
   <artifactId>postbuild-task</artifactId>
   <packaging>hpi</packaging>
   <name>Post build task</name>
-  <version>${revision}${changelist}</version>
+  <version>${changelist}</version>
 
   <properties>
-    <revision>1.10</revision>
-    <changelist>-SNAPSHOT</changelist>
+    <version>${changelist}</version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
     <jenkins.baseline>2.479</jenkins.baseline>
